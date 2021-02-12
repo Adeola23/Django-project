@@ -21,8 +21,16 @@ def add_goal(request):
 # Create your views here.
 
 def home(request):
-    add = ScrumyGoals.objects.all()
-    add = ScrumyGoals.objects.filter(goal_name = 'Keep learning Django')
-    output = ', '.join([eachgoal.goal_name for eachgoal in add])
-    return HttpResponse(output)
+    data_query = {}
+    form = ScrumyGoals.objects.get(goal_name = 'Learn Django')
+    data_query['goal_name'] = form.goal_name
+    data_query['goal_id'] = form.goal_id
+    data_query['user'] = form.user
+    return render(request, 'adeolascrumy/home.html', data_query)
+    
+
+    #add = ScrumyGoals.objects.all()
+    #add = ScrumyGoals.objects.filter(goal_name = 'Keep learning Django')
+    #output = ', '.join([eachgoal.goal_name for eachgoal in add])
+    #return HttpResponse(output)
 
