@@ -10,8 +10,16 @@ def index(request):
     return HttpResponse (goal)
 
 def move_goal(request, **kwargs):
-    output = ScrumyGoals.objects.get(goal_id = kwargs['goal_id'])
-    return HttpResponse (output)
+
+
+    try: 
+	    obj = ScrumyGoals.objects.get(goal_id=kwargs['goal_id'])
+
+    except Exception as e: 
+        return render(request, 'adeolascrumy/exception.html', {'error' : 'A record with that goal id does not exist'}) 
+    else: 
+	    return HttpResponse(obj.goal_name) 
+    
     
 def add_goal(request):
     first = ScrumyGoals.objects.create(goal_name = 'Keep learning Django', goal_id= random.randrange(1000,9999,2) , created_by= 'louis', moved_by='louis', owner= 'louis', goal_status= GoalStatus.objects.get(status_name = 'Weekly Goal'), user=User.objects.get(username = 'louis'))
