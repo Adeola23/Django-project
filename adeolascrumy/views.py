@@ -30,11 +30,23 @@ def add_goal(request):
 
 def home(request):
     data_query = {}
-    form = ScrumyGoals.objects.get(goal_name = 'Learn Django')
-    data_query['goal_name'] = form.goal_name
-    data_query['goal_id'] = form.goal_id
-    data_query['user'] = form.user
+    users = User.objects.all()
+    weekly_goals = ScrumyGoals.objects.filter(goal_status=GoalStatus.objects.get(status_name='Weekly Goal'))
+    daily_goals = ScrumyGoals.objects.filter(goal_status=GoalStatus.objects.get(status_name='Daily Goal'))
+    verify_goals = ScrumyGoals.objects.filter(goal_status=GoalStatus.objects.get(status_name='Verify Goal'))
+    done_goals = ScrumyGoals.objects.filter(goal_status=GoalStatus.objects.get(status_name='Done Goal'))
+    data_query['users'] = users
+    data_query['weekly_goals'] = weekly_goals
+    data_query['daily_goals'] = daily_goals
+    data_query['verify_goals'] = verify_goals
+    data_query['done_goals'] = done_goals
     return render(request, 'adeolascrumy/home.html', data_query)
+
+
+
+    #data_query['goal_id'] = form.goal_id
+    #data_query['user'] = form.user
+    ##return render(request, 'adeolascrumy/home.html', data_query)
     
 
     #add = ScrumyGoals.objects.all()

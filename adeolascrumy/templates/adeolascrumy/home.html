@@ -8,14 +8,16 @@
             <th>Done Goals</th>
         </tr>
     </thead>
-    
+    {% for user in data_query.users %}
     <tbody>
         <tr>
             <td>{{user}}</td>
-            <td>{{goal_name}} {{goal_id}}</td>
+            <td>{{i}}</td>
             <td></td>
             <td></td>
- 
+  
         </tr>
     </tbody>
+    {% endfor %}
+
 </table>
