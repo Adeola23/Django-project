@@ -9,5 +9,6 @@ urlpatterns = [
     path('home/', views.home),
     path('accounts/', include('django.contrib.auth.urls')) ,
     
+    
 
 ]

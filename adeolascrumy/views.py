@@ -35,12 +35,14 @@ def home(request):
     daily_goals = ScrumyGoals.objects.filter(goal_status=GoalStatus.objects.get(status_name='Daily Goal'))
     verify_goals = ScrumyGoals.objects.filter(goal_status=GoalStatus.objects.get(status_name='Verify Goal'))
     done_goals = ScrumyGoals.objects.filter(goal_status=GoalStatus.objects.get(status_name='Done Goal'))
+    data_query['weekly_goals'] = '  '.join([eachgoal_1.goal_name for eachgoal_1 in weekly_goals])
+    data_query['daily_goals'] = '  '.join([eachgoal_1.goal_name for eachgoal_1 in daily_goals])
+    data_query['verify_goals'] = '  '.join([eachgoal_1.goal_name for eachgoal_1 in verify_goals])
+    data_query['done_goals'] = '  '.join([eachgoal_1.goal_name for eachgoal_1 in done_goals])
     data_query['users'] = users
-    data_query['weekly_goals'] = weekly_goals
-    data_query['daily_goals'] = daily_goals
-    data_query['verify_goals'] = verify_goals
-    data_query['done_goals'] = done_goals
+   
     return render(request, 'adeolascrumy/home.html', data_query)
+
 
 
 
