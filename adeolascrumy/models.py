@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
+
 class GoalStatus(models.Model):
     status_name = models.CharField(max_length=180)
 
@@ -29,7 +31,7 @@ class ScrumyHistory(models.Model):
 
     def __str__(self):
         return self.created_by
-        
+
 
    
 
